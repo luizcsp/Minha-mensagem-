@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mensagem de Áudio</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="audio-container">
+        <h1>Clique em Play para ouvir a mensagem</h1>
+        <audio controls id="audioPlayer">
+            <source src="mensagem.mp3" type="audio/mpeg" id="audioSource">
+            Seu navegador não suporta o elemento de áudio.
+        </audio>
+        <input type="file" accept="audio/*" id="fileInput" />
+        <p id="feedback">Nenhum arquivo carregado.</p>
+        <div id="qrcode"></div>
+    </div>
+
+    <!-- Script para funcionalidade -->
+    <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+    <script>
+        // Elementos do DOM
+        const fileInput = document.getElementById("fileInput");
+        const audioPlayer = document.getElementById("audioPlayer");
+        const audioSource = document.getElementById("audioSource");
+        const feedback = document.getElementById("feedback");
+
+        // Carregar novo arquivo de áudio
+        fileInput.addEventListener("change", (event) => {
+            const file = event.target.files[0];
+            if (file) {
+                const fileURL = URL.createObjectURL(file);
+                audioSource.src = fileURL;
+                audioPlayer.load();
+                feedback.textContent = `Carregado: ${file.name}`;
+                feedback.style.color = "green";
+            } else {
+                feedback.textContent = "Nenhum arquivo carregado.";
+                feedback.style.color = "red";
+            }
+        });
+
+        // Gerar QR Code
+        const link = "https://seu-link-hospedado.com"; // Substitua pelo link hospedado
+        QRCode.toCanvas(document.getElementById("qrcode"), link, {
+            width: 150,
+            margin: 2,
+        }, (error) => {
+            if (error) console.error(error);
+        });
+    </script>
+</body>
+</html>
+
