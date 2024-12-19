@@ -1,0 +1,272 @@
+/* Corpo */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #121212; /* Fundo escuro moderno */
+    color: #e0e0e0;
+}
+
+/* Contêiner principal */
+#wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    padding: 20px;
+    background-color: #1f1f1f;
+    border-radius: 15px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.5);
+}
+
+/* Player */
+#player {
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+    background: #2d2d2d;
+    border-radius: 15px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Botões */
+.controls {
+    display: flex;
+    justify-content: space-around;
+    margin: 10px 0;
+}
+
+.controls .btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    transition: transform 0.2s ease;
+}
+
+.controls .btn img {
+    width: 35px;
+    height: 35px;
+}
+
+.controls .btn:hover {
+    transform: scale(1.1);
+}
+
+/* Controle de volume */
+.volume-control {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+#vol_img {
+    margin-right: 10px;
+    width: 25px;
+    height: 25px;
+}
+
+#change_vol {
+    width: 150px;
+    appearance: none;
+    background: #555;
+    height: 5px;
+    border-radius: 5px;
+    outline: none;
+    cursor: pointer;
+}
+
+#change_vol::-webkit-slider-thumb {
+    appearance: none;
+    width: 15px;
+    height: 15px;
+    background: #4caf50;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+#change_vol::-webkit-slider-thumb:hover {
+    background: #45a049;
+}
+
+
+
+/* Mensagem superior animada */
+.message-top {
+    font-size: 2rem; /* Tamanho grande */
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+    font-family: 'Cursive', 'Roboto', sans-serif;
+    background: linear-gradient(45deg, #ff0000, #008000); /* Gradiente Natalino */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
+    animation: fadeIn 3s ease-in-out, colorShift 5s infinite alternate; /* Animações */
+}
+
+/* Mensagem inferior animada */
+.message-bottom {
+    font-size: 1.5rem;
+    text-align: center;
+    margin-top: 20px;
+    font-family: 'Cursive', 'Roboto', sans-serif;
+    color: #58a6ff;
+    animation: slideUp 2s ease-out, pulse 3s infinite alternate; /* Animações */
+}
+
+/* Animação de fade-in (aparecer lentamente) */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Animação de troca de cor */
+@keyframes colorShift {
+    from {
+        filter: hue-rotate(0deg);
+    }
+    to {
+        filter: hue-rotate(360deg);
+    }
+}
+
+/* Animação de subida */
+@keyframes slideUp {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Animação de pulsação */
+@keyframes pulse {
+    from {
+        transform: scale(1);
+    }
+    to {
+        transform: scale(1.1);
+    }
+}
+
+
+/* Corpo principal */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #121212; /* Fundo escuro moderno */
+    color: #e0e0e0;
+}
+
+/* Contêiner principal */
+#wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    background-color: #1f1f1f;
+    border-radius: 15px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.5);
+}
+
+/* Mensagens */
+.message-top,
+.message-bottom {
+    font-size: 2rem;
+    font-weight: bold;
+    margin: 20px 0;
+}
+
+/* Player */
+#player {
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+    background: #2d2d2d;
+    border-radius: 15px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Fogos de artifício */
+#fireworks {
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+    height: 200px;
+    overflow: hidden;
+    margin-top: 20px;
+}
+
+@keyframes firework {
+    0% {
+        transform: scale(0.2) translateY(100px);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1.5) translateY(-200px);
+        opacity: 0;
+    }
+}
+
+.firework {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 10px;
+    height: 10px;
+    background-color: transparent;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #ff4040, 0 0 20px #ff4040;
+    animation: firework 1.5s ease-out infinite;
+    transform-origin: center;
+}
+
+.firework:nth-child(1) {
+    left: 30%;
+    animation-delay: 0.2s;
+    box-shadow: 0 0 10px #40ff40, 0 0 20px #40ff40;
+}
+
+.firework:nth-child(2) {
+    left: 70%;
+    animation-delay: 0.5s;
+    box-shadow: 0 0 10px #4040ff, 0 0 20px #4040ff;
+}
+
+.firework:nth-child(3) {
+    left: 50%;
+    animation-delay: 0.8s;
+    box-shadow: 0 0 10px #ffcc00, 0 0 20px #ffcc00;
+}
+
+
+
+/* Canvas dos fogos de artifício */
+#fireworksCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1; /* Fica atrás do conteúdo */
+    pointer-events: none; /* Ignora cliques */
+}
+

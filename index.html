@@ -3,54 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mensagem de Áudio</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Player de Áudio com Fogos de Artifício</title>
+    <link rel="stylesheet" href="player.css">
+    <script src="player.js" defer></script>
 </head>
 <body>
-    <div class="audio-container">
-        <h1>Clique em Play para ouvir a mensagem</h1>
-        <audio controls id="audioPlayer">
-            <source src="mensagem.mp3" type="audio/mpeg" id="audioSource">
-            Seu navegador não suporta o elemento de áudio.
-        </audio>
-        <input type="file" accept="audio/*" id="fileInput" />
-        <p id="feedback">Nenhum arquivo carregado.</p>
-        <div id="qrcode"></div>
+    <!-- Canvas para os fogos de artifício -->
+    <canvas id="fireworksCanvas"></canvas>
+
+    <!-- Wrapper do player -->
+    <div id="wrapper">
+        <h1 class="message-top">Feliz Natal e um próspero Ano Novo!</h1>
+        
+        <div id="player">
+            <audio id="music_player">
+                <source src="bensound-adventure.mp3" type="audio/mpeg">
+                Seu navegador não suporta o elemento de áudio.
+            </audio>
+            <div class="controls">
+                <button onclick="play_aud()" class="btn"><img src="play.png" alt="Play"></button>
+                <button onclick="pause_aud()" class="btn"><img src="pause.png" alt="Pause"></button>
+                <button onclick="stop_aud()" class="btn"><img src="stop.png" alt="Stop"></button>
+                <button onclick="replay_aud()" class="btn"><img src="replay.png" alt="Replay"></button>
+            </div>
+            <div class="volume-control">
+                <img src="volume.png" alt="Volume" id="vol_img">
+                <input type="range" id="change_vol" onchange="change_vol()" step="0.05" min="0" max="1" value="1">
+            </div>
+        </div>
+        
+        <h2 class="message-bottom">Com carinho, Luiz e Rosana</h2>
     </div>
-
-    <!-- Script para funcionalidade -->
-    <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
-    <script>
-        // Elementos do DOM
-        const fileInput = document.getElementById("fileInput");
-        const audioPlayer = document.getElementById("audioPlayer");
-        const audioSource = document.getElementById("audioSource");
-        const feedback = document.getElementById("feedback");
-
-        // Carregar novo arquivo de áudio
-        fileInput.addEventListener("change", (event) => {
-            const file = event.target.files[0];
-            if (file) {
-                const fileURL = URL.createObjectURL(file);
-                audioSource.src = fileURL;
-                audioPlayer.load();
-                feedback.textContent = `Carregado: ${file.name}`;
-                feedback.style.color = "green";
-            } else {
-                feedback.textContent = "Nenhum arquivo carregado.";
-                feedback.style.color = "red";
-            }
-        });
-
-        // Gerar QR Code
-        const link = "https://seu-link-hospedado.com"; // Substitua pelo link hospedado
-        QRCode.toCanvas(document.getElementById("qrcode"), link, {
-            width: 150,
-            margin: 2,
-        }, (error) => {
-            if (error) console.error(error);
-        });
-    </script>
 </body>
 </html>
 
